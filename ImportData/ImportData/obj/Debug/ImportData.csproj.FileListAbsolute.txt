@@ -1,5 +1,4 @@
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\bin\Debug\ImportData.exe.config
-C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\bin\Debug\WordsSource\WordsSource.txt
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\bin\Debug\ImportData.exe
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\bin\Debug\ImportData.pdb
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\bin\Debug\EntityFramework.dll
@@ -13,3 +12,4 @@ C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\bin\D
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\obj\Debug\ImportData.csprojResolveAssemblyReference.cache
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\obj\Debug\ImportData.exe
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\obj\Debug\ImportData.pdb
+C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\bin\Debug\StaticData\WordsSource.txt

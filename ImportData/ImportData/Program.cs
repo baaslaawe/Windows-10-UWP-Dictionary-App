@@ -41,8 +41,8 @@ namespace ImportData
         /// <param name="TableName">name of table</param>
         private static void insertTable(string TableName)
         {
-            List<Words> dictionarySource = getDictionaryList(@"C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\WordsSource\WordsSource.txt");
-            if(dictionarySource.Count < 0)
+            List<Words> dictionarySource = getDictionaryList(@"C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\StaticData\WordsSource.txt");
+            if(dictionarySource.Count > 0)
             {
                 foreach (var item in dictionarySource)
                 {
@@ -55,7 +55,7 @@ namespace ImportData
 
         private static List<Words> getDictionaryList(string filePath)
         {
-            //C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\WordsSource\WordsSource.txt
+            //C:\Users\lynsk\Documents\Visual Studio 2015\Projects\ImportData\ImportData\StaticData\WordsSource.txt"
             List<Words> dictionarySource = new List<Words>();
             var content = File.ReadAllLines(filePath);
    
