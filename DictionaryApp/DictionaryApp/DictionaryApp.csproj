@@ -96,7 +96,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\Common.cs" />
-    <Compile Include="Helper\Helper.cs" />
+    <Compile Include="Helper\Database.cs" />
+    <Compile Include="Helper\Words.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
