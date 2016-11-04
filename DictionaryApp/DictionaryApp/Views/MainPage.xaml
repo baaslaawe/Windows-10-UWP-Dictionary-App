@@ -70,6 +70,48 @@
                             </ListView>
                         </Grid>
                     </PivotItem>
+                    <PivotItem Header="Search">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="btnSpeechRecognition" Grid.Column="1" Foreground="#494949" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Segoe UI Symbol" FontSize="30" Tapped="btnSpeechRecognition_Tapped">&#xE192;</TextBlock>
+                                <TextBox x:Name="txtSearch" Grid.Column="0" PlaceholderText="Search.." VerticalAlignment="Center" TextChanged="txtSearch_TextChanged"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ListView x:Name="lstSearch" Margin="8" ItemClick="lstSearch_ItemClick" 
+                                          ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden" IsItemClickEnabled="True">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#F0EDE4" BorderThickness="0 0 0 1">
+                                                <Grid Margin="8">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Grid.Row="0" Text="{Binding Word}" 
+                                                               FontWeight="Bold" TextWrapping="Wrap" 
+                                                               FontSize="16" Foreground="#494949"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </Grid>
+                    </PivotItem>
                 </Pivot>
             </Grid>
         </Grid>

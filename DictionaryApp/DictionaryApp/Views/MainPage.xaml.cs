@@ -46,5 +46,20 @@ namespace DictionaryApp
         {
 
         }
+
+        private void btnSpeechRecognition_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void lstSearch_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
