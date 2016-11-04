@@ -43,6 +43,31 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
+                            <ListView x:Name="lstAlphabetic" Margin="8" Visibility="Collapsed" ItemClick="lstAlphabetic_ItemClick" 
+                                      IsItemClickEnabled="True" SelectionChanged="lstAlphabetic_SelectionChanged" 
+                                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                                      ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="#F0EDE4" BorderThickness="0 0 0 1">
+                                            <Grid Margin="8">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" DataContext="{Binding Word}" FontWeight="Bold"
+                                                           TextWrapping="Wrap" Foreground="#494949" FontSize="16"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                
+                            </ListView>
                         </Grid>
                     </PivotItem>
                 </Pivot>

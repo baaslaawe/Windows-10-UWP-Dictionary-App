@@ -36,5 +36,15 @@ namespace DictionaryApp
         {
 
         }
+
+        private void lstAlphabetic_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void lstAlphabetic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
