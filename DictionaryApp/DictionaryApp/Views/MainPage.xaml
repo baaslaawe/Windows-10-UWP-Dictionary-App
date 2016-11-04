@@ -13,9 +13,10 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="#343329">
+            <Grid Grid.Row="0" Background="#581845"><!-- #343329-->
                 <StackPanel Orientation="Horizontal" Margin="14 0 0 0">
-                    <TextBlock Text="Dictionary" Foreground="#53BCAD" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
+                    <TextBlock Text="Dictionary" Foreground="#FF5733" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
+                    <!-- #53BCAD-->
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
@@ -111,6 +112,70 @@
                                 </ListView>
                             </Grid>
                         </Grid>
+                    </PivotItem>
+                    <PivotItem Header="Favourites">
+                        <ListView x:Name="lstFavourites" Margin="8" ItemClick="lstFavourites_ItemClick" 
+                                  IsItemClickEnabled="True" SelectionChanged="lstFavourites_SelectionChanged"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#F0EDE4" BorderThickness="0 0 0 1">
+                                        <Grid Margin="8" Holding="Grid_Holding">
+                                            <FlyoutBase.AttachedFlyout>
+                                                <MenuFlyout>
+                                                    <MenuFlyoutItem x:Name="DeleteButton" Text="Delete" Click="DeleteButton_Click"/>
+                                                </MenuFlyout>
+                                            </FlyoutBase.AttachedFlyout>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Text="{Binding Word}"
+                                                       FontWeight="Bold" TextWrapping="Wrap"
+                                                       Foreground="#494949" FontSize="16"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </PivotItem>
+                    <PivotItem Header="Recents">
+                        <ListView x:Name="lstRecents" Margin="8"
+                                  ItemClick="lstRecents_ItemClick" IsItemClickEnabled="True"
+                                  SelectionChanged="lstRecents_SelectionChanged"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#F0EDE4" BorderThickness="0 0 0 1">
+                                        <Grid Margin="8">
+                                            <FlyoutBase.AttachedFlyout>
+                                                <MenuFlyout>
+                                                    <MenuFlyoutItem x:Name="DeleteButton" Text="Delete" Click="RecentsFlyoutDelete_Click"/>
+                                                </MenuFlyout>
+                                            </FlyoutBase.AttachedFlyout>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Text="{Binding Word}"
+                                                       FontWeight="Bold" TextWrapping="Wrap"
+                                                       Foreground="#494949" FontSize="16"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </PivotItem>
                 </Pivot>
             </Grid>

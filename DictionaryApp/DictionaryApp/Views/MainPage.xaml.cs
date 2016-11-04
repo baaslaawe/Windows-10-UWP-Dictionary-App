@@ -61,5 +61,45 @@ namespace DictionaryApp
         {
 
         }
+
+        private void lstFavourites_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void lstFavourites_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lstRecents_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void lstRecents_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RecentsFlyoutDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
