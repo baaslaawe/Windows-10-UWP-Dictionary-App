@@ -187,6 +187,7 @@
             <AppBarButton Name="btnMulti" Icon="List" Label="Multi" Foreground="White" Click="btnMulti_Click"/>
             <AppBarButton Name="btnSelectAll" Icon="SelectAll" Label="Select All" Foreground="White" Click="btnMulti_Click" Visibility="Collapsed"/>
             <AppBarButton Name="btnDelete" Icon="Delete" Label="Delete" Foreground="White" Click="btnDelete_Click" Visibility="Collapsed"/>
+            <AppBarButton Name="btnCancel" Icon="Cancel" Label="Cancel" Foreground="White" Click="btnCancel_Click"/>
             <AppBarSeparator/>
             <AppBarButton Name="btnSettings" Icon="Setting" Label="Settings" Foreground="White" Click="btnSettings_Click"/>
         </CommandBar> 

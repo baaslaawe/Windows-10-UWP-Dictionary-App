@@ -271,7 +271,55 @@ namespace DictionaryApp
 
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
+            int index = MainPivot.SelectedIndex;
+            if(index == Common.FavouritesIndex)
+            {
+                if(lstFavourites.SelectionMode != ListViewSelectionMode.Multiple)
+                {
+                    lstFavourites.SelectionMode = ListViewSelectionMode.Multiple;
+                    lstFavourites.IsItemClickEnabled = false;
+                    EnableSelectMode();
+                }
+                else
+                {
+                    lstFavourites.SelectionMode = ListViewSelectionMode.Single;
+                    lstFavourites.IsItemClickEnabled = true;
+                    DisableMultiSelectMode();
+                }
+            }
+            else if (index == Common.RecentsIndex)
+            {
+                if(lstRecents.SelectionMode != ListViewSelectionMode.Multiple)
+                {
+                    lstRecents.SelectionMode = ListViewSelectionMode.Multiple;
+                    lstRecents.IsItemClickEnabled = false;
+                    EnableSelectMode();
+                }
+                else
+                {
+                    lstRecents.SelectionMode = ListViewSelectionMode.Single;
+                    lstRecents.IsItemClickEnabled = true;
+                    DisableMultiSelectMode();
+                }
+            }
+        }
 
+        private void DisableMultiSelectMode()
+        {
+            btnMulti.Visibility = Visibility.Visible;
+            btnSelectAll.Visibility = Visibility.Collapsed;
+            btnDelete.Visibility = Visibility.Collapsed;
+            btnCancel.Visibility = Visibility.Collapsed;
+
+        }
+
+        private void EnableSelectMode()
+        {
+            btnMulti.Visibility = Visibility.Collapsed;
+            btnSelectAll.Visibility = Visibility.Visible;
+            btnDelete.Visibility = Visibility.Visible;
+            btnDelete.IsEnabled = false;
+            btnCancel.Visibility = Visibility.Visible;
         }
 
         private void btnSelectAll_Click(object sender, RoutedEventArgs e)
@@ -285,6 +333,11 @@ namespace DictionaryApp
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
 
         }
