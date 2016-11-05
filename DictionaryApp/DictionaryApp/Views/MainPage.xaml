@@ -182,10 +182,11 @@
         </Grid>
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar x:Name="BottomAppBar" Background="#900C3F">
+        <CommandBar x:Name="BottomAppBar" Background="#FF5733">
+            <!-- #900C3F-->
             <AppBarButton Name="btnRemind" Icon="Clock" Label="Reminder" Foreground="White" Click="btnRemind_Click"/>
             <AppBarButton Name="btnMulti" Icon="List" Label="Multi" Foreground="White" Click="btnMulti_Click"/>
-            <AppBarButton Name="btnSelectAll" Icon="SelectAll" Label="Select All" Foreground="White" Click="btnMulti_Click" Visibility="Collapsed"/>
+            <AppBarButton Name="btnSelectAll" Icon="SelectAll" Label="Select All" Foreground="White" Click="btnSelectAll_Click" Visibility="Collapsed"/>
             <AppBarButton Name="btnDelete" Icon="Delete" Label="Delete" Foreground="White" Click="btnDelete_Click" Visibility="Collapsed"/>
             <AppBarButton Name="btnCancel" Icon="Cancel" Label="Cancel" Foreground="White" Click="btnCancel_Click"/>
             <AppBarSeparator/>

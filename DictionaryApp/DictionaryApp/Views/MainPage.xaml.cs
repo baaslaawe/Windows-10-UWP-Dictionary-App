@@ -324,22 +324,67 @@ namespace DictionaryApp
 
         private void btnSelectAll_Click(object sender, RoutedEventArgs e)
         {
-
+            if(MainPivot.SelectedIndex == Common.FavouritesIndex)
+            {
+                lstFavourites.SelectAll();
+            }
+            else if(MainPivot.SelectedIndex == Common.RecentsIndex)
+            {
+                lstRecents.SelectAll();
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MainPivot.SelectedIndex == Common.FavouritesIndex)
+            {
+                if(lstFavourites.SelectedItems.Count > 0)
+                {
+                    foreach(Words item in lstFavourites.SelectedItems)
+                    {
+                        Database.deleteFromTable("Favourites", item);
+                    }
+                    lstFavourites.ItemsSource = Database.getAllWords("Favourites");
+                }
+                else
+                {
+                    Common.showMessage("Please select an item to delete");
+                }
+            }
+            else if(MainPivot.SelectedIndex == Common.RecentsIndex)
+            {
+                if (lstRecents.SelectedItems.Count > 0)
+                {
+                    foreach(Words item in lstRecents.SelectedItems)
+                    {
+                        Database.deleteFromTable("Recents", item);
+                    }
+                    lstRecents.ItemsSource = Database.getAllWords("Recents");
+                }
+                else
+                {
+                    Common.showMessage("Please select an item to delete");
+                }
+            }
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(Settings));
+            Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            DisableMultiSelectMode();
+            if(MainPivot.SelectedIndex == Common.FavouritesIndex)
+            {
+                lstFavourites.SelectionMode = ListViewSelectionMode.Single;
+            }
+            else if (MainPivot.SelectedIndex == Common.RecentsIndex)
+            {
+                lstRecents.SelectionMode = ListViewSelectionMode.Single;
+            }
         }
     }
 }
