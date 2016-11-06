@@ -13,10 +13,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="#581845"><!-- #343329-->
+            <Grid Grid.Row="0" Background="#581845">
                 <StackPanel Orientation="Horizontal" Margin="14 0 0 0">
                     <TextBlock Text="Dictionary" Foreground="#FF5733" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
-                    <!-- #53BCAD-->
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">

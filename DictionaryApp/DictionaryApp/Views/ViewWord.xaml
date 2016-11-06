@@ -7,7 +7,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="#F7F7F7">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#581845">
+                <StackPanel Orientation="Horizontal" Margin="14 0 0 0">
+                    <TextBlock Text="Dictionary" Foreground="#FF5733" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtWord" Grid.Row="0" FontWeight="Bold"
+                               TextWrapping="Wrap" Foreground="#494949" FontSize="28"/>
+                    <TextBlock x:Name="btnSpeech" Grid.Column="1" Foreground="#494949"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               FontFamily="Segoe UI Symbol" FontSize="30" Tapped="btnSpeech_Tapped">&#xE15D;</TextBlock>
+                </Grid>    
+                    <TextBlock x:Name="txtType" Grid.Row="1" TextWrapping="Wrap" Foreground="#494949"
+                               FontSize="16"/>
+                    <TextBlock x:Name="txtDescription" TextAlignment="Justify"
+                               Grid.Row="2" FontStyle="Italic" TextWrapping="Wrap"
+                               Foreground="#494949" FontSize="16"/>
+                
+            </Grid>
+        </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="BottomAppBar" Background="#FF5733">
+            <AppBarButton x:Name="btnFavourites" Icon="Favorite" Label="Favourite" Foreground="White" Click="btnFavourites_Click"/>
+            <AppBarButton x:Name="btnTranslate" Icon="Bookmarks" Label="Translate" Foreground="White" Click="btnTranslate_Click"/>
+            <AppBarSeparator/>
+            <AppBarButton x:Name="btnSettings" Icon="Setting" Label="Setting" Foreground="White" Click="btnSettings_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

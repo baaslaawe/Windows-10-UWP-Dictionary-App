@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DictionaryApp.Helper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,31 @@ namespace DictionaryApp.Views
     /// </summary>
     public sealed partial class ViewWord : Page
     {
+        private Words word;
+        private int isFavourite;
         public ViewWord()
         {
             this.InitializeComponent();
+        }
+
+        private void btnSpeech_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void btnFavourites_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnTranslate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
