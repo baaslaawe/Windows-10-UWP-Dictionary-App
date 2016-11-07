@@ -26,5 +26,30 @@ namespace DictionaryApp.Views
         {
             this.InitializeComponent();
         }
+
+        private void wordSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
+        }
+
+        private void typeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
+        }
+
+        private void descriptionSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
+        }
+
+        private void Male_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Female_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

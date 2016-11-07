@@ -47,7 +47,6 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="BottomAppBar" Background="#FF5733">
             <AppBarButton x:Name="btnFavourites" Icon="Favorite" Label="Favourite" Foreground="White" Click="btnFavourites_Click"/>
-            <AppBarButton x:Name="btnTranslate" Icon="Bookmarks" Label="Translate" Foreground="White" Click="btnTranslate_Click"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="btnSettings" Icon="Setting" Label="Setting" Foreground="White" Click="btnSettings_Click"/>
         </CommandBar>

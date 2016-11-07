@@ -7,7 +7,72 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="#F7F7F7">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#581845">
+                <StackPanel Orientation="Horizontal" Margin="14 0 0 0">
+                    <TextBlock Text="Dictionary" Foreground="#FF5733" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Pivot x:Name="pvMain">
+                    <PivotItem Header="General">
+                        <StackPanel x:Name="stackMain" Orientation="Vertical">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Translate To " Foreground="#393939" FontSize="24"/>
+                                <ComboBox x:Name="cbLanguageTo" Width="{Binding ActualWidth,ElementName=stackMain}"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock x:Name="txtWord" Text="Hello" Foreground="#393939" FontSize="24"/>
+                                <Slider x:Name="wordSlider" Foreground="#393939" Maximum="36" 
+                                        Minimum="12" LargeChange="4" Value="28" StepFrequency="4" SmallChange="4" ValueChanged="wordSlider_ValueChanged"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock x:Name="txtType" Text="(interj. &amp; n)" Foreground="#393939" FontSize="20"/>
+                                <Slider x:Name="typeSlider" Foreground="#393939" Maximum="36" 
+                                        Minimum="12" LargeChange="4" Value="16" StepFrequency="4" SmallChange="4" ValueChanged="typeSlider_ValueChanged"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock x:Name="txtDescription" Text="See Hello" Foreground="#393939" FontSize="20"/>
+                                <Slider x:Name="descriptionSlider" Foreground="#393939" Maximum="36" 
+                                        Minimum="12" LargeChange="4" Value="16" StepFrequency="4" SmallChange="4" ValueChanged="descriptionSlider_ValueChanged"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </PivotItem>
+                    <PivotItem Header="Speech">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Voice Gender" Foreground="#393939" FontSize="24"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton x:Name="Male" Content="Male" FontSize="20" GroupName="Gender" Checked="Male_Checked"/>
+                                    <RadioButton x:Name="Female" Content="Female" FontSize="20" GroupName="Gender" Checked="Female_Checked"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Speech Pitch" Foreground="#393939" FontSize="24"/>
+                                <Slider x:Name="pitchSlider" Foreground="#393939" Maximum="5" Minimum="1" LargeChange="1" Value="3"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Speech Range" Foreground="#393939" FontSize="24"/>
+                                <Slider x:Name="rangeSlider" Foreground="#393939" Maximum="5" Minimum="1" LargeChange="1" Value="3"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Speech Rate" Foreground="#393939" FontSize="24"/>
+                                <Slider x:Name="rateSlider" Foreground="#393939" Maximum="5" Minimum="1" LargeChange="1" Value="3"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Speech Volume" Foreground="#393939" FontSize="24"/>
+                                <Slider x:Name="volumeSlider" Foreground="#393939" Maximum="6" Minimum="1" LargeChange="1" Value="3"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

@@ -1,0 +1,2 @@
+C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\BackgroundTask.csproj;x86
+C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\DictionaryApp.csproj;x86

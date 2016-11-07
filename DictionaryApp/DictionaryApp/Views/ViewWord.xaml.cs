@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -187,7 +188,7 @@ namespace DictionaryApp.Views
 
         private void btnSpeech_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            
         }
 
         private void btnFavourites_Click(object sender, RoutedEventArgs e)
@@ -206,14 +207,16 @@ namespace DictionaryApp.Views
             }
         }
 
+        /*
         private void btnTranslate_Click(object sender, RoutedEventArgs e)
         {
 
-        }
+        }*/
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(Settings));
         }
+
     }
 }

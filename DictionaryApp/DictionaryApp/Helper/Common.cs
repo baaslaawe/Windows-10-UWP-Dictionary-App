@@ -16,7 +16,7 @@ namespace DictionaryApp.Helper
         public static string SpeakPitchColumn = "SpeakPitch";
         public static string SpeakRangeColumn = "SpeakRange";
         public static string SpeakVolumeColumn = "SpeakVolume";
-        public static string SpeakRateGender = "VoiceGender";
+        public static string SpeakVoiceGender = "VoiceGender";
         public static string WordFontSize = "WordFontSize";
         public static string TypeFontSize = "TypeFontSize";
         public static string DescriptionFontSize = "DescriptionFontSize";
