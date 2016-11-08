@@ -2,6 +2,7 @@
 using DictionaryApp.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Windows.Media.SpeechRecognition;
 using Windows.UI.Core;
@@ -41,17 +42,39 @@ namespace DictionaryApp
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
-            SetFullScreen();
+            
+            base.OnNavigatedTo(e);
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            currentView.BackRequested += backButton_Tapped;
+            //SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
+            //SetFullScreen();
             loadDictionary();
             MainPivot.SelectedIndex = Common.MainPivotSaveIndex;
         }
 
+        private void backButton_Tapped(object sender, BackRequestedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+            //Debug.Write("Back button tapped");
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            currentView.BackRequested -= backButton_Tapped;
+        }
+        /*
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().BackRequested -= MainPage_BackRequested;
-        }
-
+        }*/
+        /*
         private async void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
         {
             e.Handled = true;
@@ -74,7 +97,7 @@ namespace DictionaryApp
                 }
             }
                
-        }
+        }*/
 
         public MainPage()
         {
@@ -83,7 +106,40 @@ namespace DictionaryApp
 
         private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if(MainPivot.SelectedIndex == Common.HomeIndex)
+            {
+                btnMulti.Visibility = Visibility.Collapsed;
+                btnRemind.Visibility = Visibility.Collapsed;
+            }
+            else if(MainPivot.SelectedIndex == Common.SearchIndex)
+            {
+                btnMulti.Visibility = Visibility.Collapsed;
+                btnRemind.Visibility = Visibility.Collapsed;
+            }
+            else if (MainPivot.SelectedIndex == Common.FavouritesIndex)
+            {
+                List<Words> lstSource = Database.getAllWords("Favourites");
+                lstFavourites.ItemsSource = lstSource;
+                if(lstFavourites.Items.Count > 0)
+                {
+                    btnMulti.Visibility = Visibility.Visible;
+                }
+                btnRemind.Visibility = Visibility.Visible;
+            }
+            else if (MainPivot.SelectedIndex == Common.RecentsIndex)
+            {
+                List<Words> lstSource = Database.getAllWords("Recents");
+                lstRecents.ItemsSource = lstSource;
+                if (lstRecents.Items.Count > 0)
+                {
+                    btnMulti.Visibility = Visibility.Visible;
+                }
+                btnRemind.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void lstGroup_ItemClick(object sender, ItemClickEventArgs e)

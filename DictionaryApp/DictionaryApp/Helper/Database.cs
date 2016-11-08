@@ -1,6 +1,7 @@
 ﻿using SQLitePCL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,8 +75,9 @@ namespace DictionaryApp.Helper
                     return 1;
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e.Message);
                 return -1;
             }
         }
@@ -93,15 +95,16 @@ namespace DictionaryApp.Helper
             {
                 using (var connection = new SQLiteConnection(Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\" + Common.DB_NAME))
                 {
-                    var query = string.Format("INSERT INTO TABLE {0} VALUES({0},'{1}','{2}','{3}')", word.Id, word.Word, word.Type, word.Description);
+                    var query = string.Format("INSERT INTO TABLE {0} VALUES({1},'{2}','{3}','{4}')", tableName, word.Id, word.Word, word.Type, word.Description);
                     var statement = connection.Prepare(query);
                     statement.Step();
                     return 1;
 
                 }
             }
-            catch
+            catch(Exception e)
             {
+                Debug.WriteLine(e.Message);
                 return -1;
             }
         }

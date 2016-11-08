@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-11-08T13:17:47.792</Modified>
+      <Modified>2016-11-08T22:42:50.861</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\DictionaryApp.exe">
       <PackagePath>entrypoint\DictionaryApp.exe</PackagePath>
-      <Modified>2016-11-08T13:17:38.749</Modified>
+      <Modified>2016-11-08T22:42:49.815</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lynsk\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -533,11 +533,11 @@
     <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-11-08T13:17:45.822</Modified>
+      <Modified>2016-11-08T16:02:00.020</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\Core\DictionaryApp.exe">
       <PackagePath>DictionaryApp.exe</PackagePath>
-      <Modified>2016-11-08T13:17:47.789</Modified>
+      <Modified>2016-11-08T22:42:50.854</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
