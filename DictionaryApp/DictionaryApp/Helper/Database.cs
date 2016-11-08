@@ -16,7 +16,7 @@ namespace DictionaryApp.Helper
             {
                 using (var connection = new SQLiteConnection(Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\" + Common.DB_NAME))
                 {
-                    var statement = connection.Prepare("SELECT * FROM" + tableName);
+                    var statement = connection.Prepare("SELECT * FROM " + tableName);
                     while (!(SQLiteResult.DONE == statement.Step()))
                     {
                         if (statement[0] != null)

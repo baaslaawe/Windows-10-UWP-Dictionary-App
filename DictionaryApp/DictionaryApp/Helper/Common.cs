@@ -20,7 +20,6 @@ namespace DictionaryApp.Helper
         public static string WordFontSize = "WordFontSize";
         public static string TypeFontSize = "TypeFontSize";
         public static string DescriptionFontSize = "DescriptionFontSize";
-        public static string LanguageTo = "LanguageTo";
 
         //pivot index
         public static int HomeIndex = 0;
@@ -28,6 +27,8 @@ namespace DictionaryApp.Helper
         public static int FavouritesIndex = 2;
         public static int RecentsIndex = 3;
         public static int MainPivotSaveIndex = 0;
+
+        public static string DB_Name { get; internal set; }
 
         //Function to show message dialog
         public static async void showMessage(string errorMessage)

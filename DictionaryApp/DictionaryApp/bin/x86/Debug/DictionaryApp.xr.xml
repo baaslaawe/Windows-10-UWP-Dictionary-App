@@ -91,7 +91,6 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="Inlines" />
-      <RootProperty Name="DataContext" />
       <RootProperty Name="TextAlignment" />
       <RootProperty Name="FontStyle" />
       <RootEvent Name="Tapped" />
@@ -130,7 +129,22 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarSeparator" />
     <RootType FullName="DictionaryApp.MainPage" />
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Slider">
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Maximum" />
+      <RootProperty Name="Minimum" />
+      <RootProperty Name="LargeChange" />
+      <RootProperty Name="Value" />
+      <RootProperty Name="StepFrequency" />
+      <RootProperty Name="SmallChange" />
+      <RootEvent Name="ValueChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RadioButton">
+      <RootProperty Name="Content" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="GroupName" />
+      <RootEvent Name="Checked" />
+    </RootType>
     <RootType FullName="DictionaryApp.Views.Settings" />
     <RootType FullName="DictionaryApp.Views.ViewWord" />
   </Roots.RootTypes>

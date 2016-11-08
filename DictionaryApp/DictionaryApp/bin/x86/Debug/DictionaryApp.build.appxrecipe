@@ -355,6 +355,9 @@
     <AppxPackagedFile Include="C:\Users\lynsk\.nuget\packages\SQLitePCL\3.8.7.2\build\netcore451\SQLitePCL.Ext.dll">
       <PackagePath>BackgroundTask\SQLitePCL.Ext.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\Assets\Database.db">
+      <PackagePath>Assets\Database.db</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>

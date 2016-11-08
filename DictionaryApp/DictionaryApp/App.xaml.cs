@@ -1,12 +1,16 @@
-﻿using System;
+﻿using DictionaryApp.Helper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.FileProperties;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,10 +26,28 @@ namespace DictionaryApp
     /// </summary>
     sealed partial class App : Application
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
+        public static async Task CreateDatabase()
+        {
+            StorageFile fileSource = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/" +Common.DB_NAME));
+            StorageFolder desFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            try
+            {
+                //check if the file exists
+                StorageFile fileCheck = await desFolder.GetFileAsync(Common.DB_NAME);
+                BasicProperties prop = await fileCheck.GetBasicPropertiesAsync();
+                //check file size
+                if(prop.Size == 0)
+                {
+                    await fileSource.CopyAsync(desFolder, Common.DB_NAME, NameCollisionOption.ReplaceExisting);
+                }
+            }
+            catch
+            {
+                //if the file is not available
+                await fileSource.CopyAsync(desFolder, Common.DB_NAME, NameCollisionOption.ReplaceExisting);
+            }
+        }
+
         public App()
         {
             this.InitializeComponent();
@@ -37,8 +59,9 @@ namespace DictionaryApp
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            await CreateDatabase();
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {

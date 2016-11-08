@@ -3,7 +3,6 @@ C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTas
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\bin\x86\Debug\BackgroundTask.winmd
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\bin\x86\Debug\BackgroundTask.pdb
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\bin\x86\Debug\BackgroundTask.pri
-C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\obj\x86\Debug\BackgroundTask.csprojResolveAssemblyReference.cache
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\obj\x86\Debug\BackgroundTask.winmd
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\obj\x86\Debug\BackgroundTask.pdb
 C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\BackgroundTask\obj\x86\Debug\BackgroundTask.winmdobj

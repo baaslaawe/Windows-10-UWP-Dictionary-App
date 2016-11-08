@@ -36,7 +36,7 @@
                                         <Border BorderBrush="#F0EDE4" BorderThickness="0 0 0 1">
                                             <Grid Margin="8" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top">
                                                 <Ellipse Fill="#393939"/>
-                                                <TextBlock Text="{Binding}" HorizontalAlignment="Left" FontSize="16" VerticalAlignment="Center"
+                                                <TextBlock Text="{Binding}" HorizontalAlignment="Center"  FontSize="16" VerticalAlignment="Center"
                                                            Foreground="White" FontWeight="Bold"/>
                                             </Grid>
                                         </Border>
@@ -60,7 +60,7 @@
                                                     <RowDefinition Height="auto"/>
                                                     <RowDefinition Height="*"/>
                                                 </Grid.RowDefinitions>
-                                                <TextBlock Grid.Row="0" DataContext="{Binding Word}" FontWeight="Bold"
+                                                <TextBlock Grid.Row="0" Text="{Binding Word}" FontWeight="Bold"
                                                            TextWrapping="Wrap" Foreground="#494949" FontSize="16"/>
                                             </Grid>
                                         </Border>
