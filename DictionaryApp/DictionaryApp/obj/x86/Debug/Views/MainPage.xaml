@@ -20,7 +20,7 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Pivot x:ConnectionId='1' x:Name="MainPivot"                                              >
-                    <PivotItem Header="Alphabetic">
+                    <PivotItem Header="Alphabet">
                         <Grid>
                             <ListView x:ConnectionId='10' x:Name="lstGroup" Margin="8"                                
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
@@ -113,8 +113,8 @@
                         </Grid>
                     </PivotItem>
                     <PivotItem Header="Favourites">
-                        <ListView x:ConnectionId='4' x:Name="lstFavourites" Margin="8"                                     
-                                  IsItemClickEnabled="True"                                                  
+                        <ListView x:ConnectionId='4' x:Name="lstFavourites" Margin="8"                                    
+                                  IsItemClickEnabled="True"                                                 
                                   ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
@@ -189,7 +189,7 @@
             <AppBarButton x:ConnectionId='16' Name="btnDelete" Icon="Delete" Label="Delete" Foreground="White"                         Visibility="Collapsed"/>
             <AppBarButton x:ConnectionId='17' Name="btnCancel" Icon="Cancel" Label="Cancel" Foreground="White"                        />
             <AppBarSeparator/>
-            <AppBarButton x:ConnectionId='18' Name="btnSettings" Icon="Setting" Label="Settings" Foreground="White"                          />
+            <AppBarButton x:ConnectionId='18' Name="btnSettings" Icon="Setting" Label="Settings" Foreground="White"                         />
         </CommandBar> 
     </Page.BottomAppBar>
 </Page>

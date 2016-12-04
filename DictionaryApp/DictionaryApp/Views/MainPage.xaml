@@ -20,7 +20,7 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Pivot x:Name="MainPivot" SelectionChanged="MainPivot_SelectionChanged">
-                    <PivotItem Header="Alphabetic">
+                    <PivotItem Header="Alphabet">
                         <Grid>
                             <ListView x:Name="lstGroup" Margin="8" ItemClick="lstGroup_ItemClick" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
@@ -43,8 +43,8 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <ListView x:Name="lstAlphabetic" Margin="8" Visibility="Collapsed" ItemClick="lstAlphabetic_ItemClick" 
-                                      IsItemClickEnabled="True" SelectionChanged="lstAlphabetic_SelectionChanged" 
+                            <ListView x:Name="lstAlphabetic" Margin="8" Visibility="Collapsed" ItemClick="lstAlphaBetic_ItemClick" 
+                                      IsItemClickEnabled="True" SelectionChanged="lstAlphaBetic_SelectionChanged" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                                       ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                                 <ListView.ItemContainerStyle>
@@ -113,8 +113,8 @@
                         </Grid>
                     </PivotItem>
                     <PivotItem Header="Favourites">
-                        <ListView x:Name="lstFavourites" Margin="8" ItemClick="lstFavourites_ItemClick" 
-                                  IsItemClickEnabled="True" SelectionChanged="lstFavourites_SelectionChanged"
+                        <ListView x:Name="lstFavourites" Margin="8" ItemClick="lstFavorites_ItemClick" 
+                                  IsItemClickEnabled="True" SelectionChanged="lstFavorites_SelectionChanged"
                                   ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
@@ -189,7 +189,7 @@
             <AppBarButton Name="btnDelete" Icon="Delete" Label="Delete" Foreground="White" Click="btnDelete_Click" Visibility="Collapsed"/>
             <AppBarButton Name="btnCancel" Icon="Cancel" Label="Cancel" Foreground="White" Click="btnCancel_Click"/>
             <AppBarSeparator/>
-            <AppBarButton Name="btnSettings" Icon="Setting" Label="Settings" Foreground="White" Click="btnSettings_Click"/>
+            <AppBarButton Name="btnSettings" Icon="Setting" Label="Settings" Foreground="White" Click="btnSetting_Click"/>
         </CommandBar> 
     </Page.BottomAppBar>
 </Page>

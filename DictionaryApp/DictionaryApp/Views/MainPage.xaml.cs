@@ -2,8 +2,12 @@
 using DictionaryApp.Views;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Background;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.Media.SpeechRecognition;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -11,28 +15,25 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace DictionaryApp
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class MainPage : Page
     {
         private List<Words> source = new List<Words>();
-
-        private long lastSearchTimeInMillis = 0;
-
+        private long lastSearchTimeInMilis = 0;
         private void SetFullScreen()
         {
             ApplicationView view = ApplicationView.GetForCurrentView();
             view.TryEnterFullScreenMode();
         }
-
         private void loadDictionary()
         {
             List<string> groupSource = Database.getGroupChar("Words");
@@ -42,61 +43,59 @@ namespace DictionaryApp
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
-            base.OnNavigatedTo(e);
-            var currentView = SystemNavigationManager.GetForCurrentView();
-            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            currentView.BackRequested += backButton_Tapped;
-            //SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
-            //SetFullScreen();
             loadDictionary();
-            MainPivot.SelectedIndex = Common.MainPivotSaveIndex;
+            var currentView = SystemNavigationManager.GetForCurrentView();
+
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+
+
+            //Handle Hardware Back Button
+            /*
+            SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
+            SetFullScreen();
+            loadDictionary();
+            MainPivot.SelectedIndex = Common.MainPivotSaveIndex;*/
         }
 
         private void backButton_Tapped(object sender, BackRequestedEventArgs e)
+
         {
-            if (Frame.CanGoBack)
-            {
-                Frame.GoBack();
-            }
-            //Debug.Write("Back button tapped");
+
+            // insert anything you need to do before navigating
+
+            if (Frame.CanGoBack) Frame.GoBack();
+
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            base.OnNavigatedFrom(e);
             var currentView = SystemNavigationManager.GetForCurrentView();
+
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+
             currentView.BackRequested -= backButton_Tapped;
+            // SystemNavigationManager.GetForCurrentView().BackRequested -= MainPage_BackRequested;
         }
-        /*
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().BackRequested -= MainPage_BackRequested;
-        }*/
         /*
         private async void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
         {
             e.Handled = true;
-            if (lstAlphabetic.Visibility == Visibility.Visible)
+            if(lstAlphaBetic.Visibility == Visibility.Visible)
             {
-                lstAlphabetic.Visibility = Visibility.Collapsed;
+                lstAlphaBetic.Visibility = Visibility.Collapsed;
                 lstGroup.Visibility = Visibility.Visible;
             }
             else
             {
-                var msg = new MessageDialog("Are you sure you want to Exit?");
-                var okBtn = new UICommand("Yes");
-                var cancelBtn = new UICommand("No");
+                var msg = new MessageDialog("Do you want to close this app?");
+                var okBtn = new UICommand("Accept");
+                var cancelBtn = new UICommand("Decline");
                 msg.Commands.Add(okBtn);
                 msg.Commands.Add(cancelBtn);
                 IUICommand result = await msg.ShowAsync();
-                if (result != null && result.Label == "Yes")
-                {
+                if (result != null && result.Label == "Accept")
                     Application.Current.Exit();
-                }
             }
-               
         }*/
 
         public MainPage()
@@ -104,42 +103,38 @@ namespace DictionaryApp
             this.InitializeComponent();
         }
 
+
         private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(MainPivot.SelectedIndex == Common.HomeIndex)
+            //Lacking code
+            if (MainPivot.SelectedIndex == Common.HomeIndex)
             {
                 btnMulti.Visibility = Visibility.Collapsed;
                 btnRemind.Visibility = Visibility.Collapsed;
             }
-            else if(MainPivot.SelectedIndex == Common.SearchIndex)
+            else if (MainPivot.SelectedIndex == Common.SearchIndex)
             {
                 btnMulti.Visibility = Visibility.Collapsed;
                 btnRemind.Visibility = Visibility.Collapsed;
             }
             else if (MainPivot.SelectedIndex == Common.FavouritesIndex)
             {
-                List<Words> lstSource = Database.getAllWords("Favourites");
-                lstFavourites.ItemsSource = lstSource;
-                if(lstFavourites.Items.Count > 0)
-                {
+                List<Words> lstsource = Database.getAllWords("Favourites");
+                lstFavourites.ItemsSource = lstsource;
+                if (lstFavourites.Items.Count > 0)
                     btnMulti.Visibility = Visibility.Visible;
-                }
                 btnRemind.Visibility = Visibility.Visible;
+
             }
             else if (MainPivot.SelectedIndex == Common.RecentsIndex)
             {
-                List<Words> lstSource = Database.getAllWords("Recents");
-                lstRecents.ItemsSource = lstSource;
+                List<Words> lstsource = Database.getAllWords("Recents");
+                lstRecents.ItemsSource = lstsource;
                 if (lstRecents.Items.Count > 0)
-                {
                     btnMulti.Visibility = Visibility.Visible;
-                }
                 btnRemind.Visibility = Visibility.Visible;
             }
-            else
-            {
-                return;
-            }
+            else { return; }
         }
 
         private void lstGroup_ItemClick(object sender, ItemClickEventArgs e)
@@ -150,43 +145,43 @@ namespace DictionaryApp
             lstAlphabetic.ItemsSource = Database.getAllWordsByChar(groupChar);
         }
 
-        private void lstAlphabetic_ItemClick(object sender, ItemClickEventArgs e)
+        private void lstAlphaBetic_ItemClick(object sender, ItemClickEventArgs e)
         {
             Words word = e.ClickedItem as Words;
             Frame.Navigate(typeof(ViewWord), word);
             Database.insertIntoTable("Recents", word);
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
         }
-        
-        private void lstAlphabetic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void lstAlphaBetic_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
         private async void btnSpeechRecognition_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var speechRecogniser = new SpeechRecognizer();
-            await speechRecogniser.CompileConstraintsAsync();
-            SpeechRecognitionResult speechRecognitionResult = await speechRecogniser.RecognizeWithUIAsync();
+            var speechRecognizer = new SpeechRecognizer();
+            await speechRecognizer.CompileConstraintsAsync();
+            SpeechRecognitionResult speechRecognitionResult = await speechRecognizer.RecognizeWithUIAsync();
             txtSearch.Text = speechRecognitionResult.Text;
+
         }
+
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(txtSearch != null)
+            if (txtSearch != null)
             {
-                if(txtSearch.Text.Length > 0)
+                if (txtSearch.Text.Length > 0)
                 {
-                    if(lastSearchTimeInMillis + 500 > DateTime.Now.Millisecond)
+                    if (lastSearchTimeInMilis + 500 > DateTime.Now.Millisecond)
                     {
-                        lastSearchTimeInMillis = DateTime.Now.Millisecond;
+                        lastSearchTimeInMilis = DateTime.Now.Millisecond;
                         source = Database.searchWord(txtSearch.Text.Trim());
-                        if(source != null)
+                        if (source != null)
                         {
-                            if(source.Count == 0)
-                            {
-
-                            }
+                            if (source.Count == 0)
+                            { }
                             else
                             {
                                 lstSearch.Visibility = Visibility.Visible;
@@ -207,25 +202,23 @@ namespace DictionaryApp
             Words word = e.ClickedItem as Words;
             Frame.Navigate(typeof(ViewWord), word);
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
+
         }
 
-        private void lstFavourites_ItemClick(object sender, ItemClickEventArgs e)
+        private void lstFavorites_ItemClick(object sender, ItemClickEventArgs e)
         {
             Words word = e.ClickedItem as Words;
             Frame.Navigate(typeof(ViewWord), word);
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
+
         }
 
-        private void lstFavourites_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lstFavorites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lstFavourites.SelectedItems.Count > 0)
-            {
+            if (lstFavourites.SelectedItems.Count > 0)
                 btnDelete.IsEnabled = true;
-            }
             else
-            {
                 btnDelete.IsEnabled = false;
-            }
         }
 
         private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
@@ -238,7 +231,7 @@ namespace DictionaryApp
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Words word = (e.OriginalSource as FrameworkElement).DataContext as Words;
-            if(word != null)
+            if (word != null)
             {
                 Database.deleteFromTable("Favourites", word);
                 lstFavourites.ItemsSource = Database.getAllWords("Favourites");
@@ -254,19 +247,10 @@ namespace DictionaryApp
 
         private void lstRecents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lstRecents.SelectedItems.Count > 0)
-            {
+            if (lstRecents.SelectedItems.Count > 0)
                 btnDelete.IsEnabled = true;
-            }
             else
-            {
                 btnDelete.IsEnabled = false;
-            }
-        }
-
-        private void DeleteButton_Click_1(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void RecentsFlyoutDelete_Click(object sender, RoutedEventArgs e)
@@ -281,7 +265,7 @@ namespace DictionaryApp
 
         private void btnRemind_Click(object sender, RoutedEventArgs e)
         {
-            RegisterBackgroundTask(1, false);// 1 = 1hour
+            RegisterBackgroundTask(1, false); // 1 = 1 hour
         }
 
         private async void RegisterBackgroundTask(uint hour, bool oneShot)
@@ -292,28 +276,30 @@ namespace DictionaryApp
             {
 
             }
-            var taskRegistered = false;
+
+            var taskRegisted = false;
             var taskName = "ReminderWords";
-            foreach(var task in BackgroundTaskRegistration.AllTasks)
+            foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
-                if(task.Value.Name == taskName)
-                {
-                    task.Value.Unregister(true);//Unregisters the task
-                }
+                if (task.Value.Name == taskName)
+                    task.Value.Unregister(true); // Unregister task
             }
-            if(taskRegistered == false)
+
+            if (taskRegisted == false)
             {
                 var builder = new BackgroundTaskBuilder();
-                var trigger = new TimeTrigger( hour, oneShot);
+                var trigger = new TimeTrigger(hour, oneShot);
+
                 builder.Name = taskName;
                 builder.TaskEntryPoint = typeof(BackgroundTask.BackgroundTask).FullName;
                 builder.SetTrigger(trigger);
-                var taskRegistration = builder.Register();
-                taskRegistration.Completed += TaskRegistration_Completed;
+
+                var taskRegistion = builder.Register();
+                taskRegistion.Completed += TaskRegistion_Completed;
             }
         }
 
-        private void TaskRegistration_Completed(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
+        private void TaskRegistion_Completed(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
         {
 
         }
@@ -321,13 +307,13 @@ namespace DictionaryApp
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
             int index = MainPivot.SelectedIndex;
-            if(index == Common.FavouritesIndex)
+            if (index == Common.FavouritesIndex)
             {
-                if(lstFavourites.SelectionMode != ListViewSelectionMode.Multiple)
+                if (lstFavourites.SelectionMode != ListViewSelectionMode.Multiple)
                 {
                     lstFavourites.SelectionMode = ListViewSelectionMode.Multiple;
                     lstFavourites.IsItemClickEnabled = false;
-                    EnableSelectMode();
+                    EnableMultiSelectMode();
                 }
                 else
                 {
@@ -338,11 +324,11 @@ namespace DictionaryApp
             }
             else if (index == Common.RecentsIndex)
             {
-                if(lstRecents.SelectionMode != ListViewSelectionMode.Multiple)
+                if (lstRecents.SelectionMode != ListViewSelectionMode.Multiple)
                 {
                     lstRecents.SelectionMode = ListViewSelectionMode.Multiple;
                     lstRecents.IsItemClickEnabled = false;
-                    EnableSelectMode();
+                    EnableMultiSelectMode();
                 }
                 else
                 {
@@ -359,10 +345,9 @@ namespace DictionaryApp
             btnSelectAll.Visibility = Visibility.Collapsed;
             btnDelete.Visibility = Visibility.Collapsed;
             btnCancel.Visibility = Visibility.Collapsed;
-
         }
 
-        private void EnableSelectMode()
+        private void EnableMultiSelectMode()
         {
             btnMulti.Visibility = Visibility.Collapsed;
             btnSelectAll.Visibility = Visibility.Visible;
@@ -371,25 +356,13 @@ namespace DictionaryApp
             btnCancel.Visibility = Visibility.Visible;
         }
 
-        private void btnSelectAll_Click(object sender, RoutedEventArgs e)
-        {
-            if(MainPivot.SelectedIndex == Common.FavouritesIndex)
-            {
-                lstFavourites.SelectAll();
-            }
-            else if(MainPivot.SelectedIndex == Common.RecentsIndex)
-            {
-                lstRecents.SelectAll();
-            }
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (MainPivot.SelectedIndex == Common.FavouritesIndex)
             {
-                if(lstFavourites.SelectedItems.Count > 0)
+                if (lstFavourites.SelectedItems.Count > 0)
                 {
-                    foreach(Words item in lstFavourites.SelectedItems)
+                    foreach (Words item in lstFavourites.SelectedItems)
                     {
                         Database.deleteFromTable("Favourites", item);
                     }
@@ -397,27 +370,25 @@ namespace DictionaryApp
                 }
                 else
                 {
-                    Common.showMessage("Please select an item to delete");
+                    Common.showMessage("Please select item to delete...");
                 }
             }
-            else if(MainPivot.SelectedIndex == Common.RecentsIndex)
+            else if (MainPivot.SelectedIndex == Common.RecentsIndex)
             {
                 if (lstRecents.SelectedItems.Count > 0)
                 {
-                    foreach(Words item in lstRecents.SelectedItems)
-                    {
+                    foreach (Words item in lstRecents.SelectedItems)
                         Database.deleteFromTable("Recents", item);
-                    }
                     lstRecents.ItemsSource = Database.getAllWords("Recents");
                 }
                 else
                 {
-                    Common.showMessage("Please select an item to delete");
+                    Common.showMessage("Please select item to delete...");
                 }
             }
         }
 
-        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        private void btnSetting_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Settings));
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
@@ -426,14 +397,23 @@ namespace DictionaryApp
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             DisableMultiSelectMode();
-            if(MainPivot.SelectedIndex == Common.FavouritesIndex)
-            {
+            if (MainPivot.SelectedIndex == Common.FavouritesIndex)
                 lstFavourites.SelectionMode = ListViewSelectionMode.Single;
-            }
             else if (MainPivot.SelectedIndex == Common.RecentsIndex)
-            {
                 lstRecents.SelectionMode = ListViewSelectionMode.Single;
-            }
+        }
+
+        private void btnSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainPivot.SelectedIndex == Common.FavouritesIndex)
+                lstFavourites.SelectAll();
+            else if (MainPivot.SelectedIndex == Common.RecentsIndex)
+                lstRecents.SelectAll();
+        }
+
+        private void lstAlphabetic_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }

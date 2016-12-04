@@ -1,8 +1,11 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
-    "MyToolkit.Extended": "2.5.13",
-    "SQLitePCL": "3.8.7.2"
+    "Microsoft.ApplicationInsights": "2.1.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "MyToolkit.Extended": "2.5.16",
+    "SQLite.UWP.Native": "3.12.3",
+    "SQLitePCL": "3.8.7.2",
+    "System.Data.SQLite": "1.0.103"
   },
   "frameworks": {
     "uap10.0": {}

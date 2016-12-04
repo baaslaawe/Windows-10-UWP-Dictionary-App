@@ -1,4 +1,8 @@
 ﻿using DictionaryApp.Helper;
+using System;
+using System.Diagnostics;
+using System.Linq;
+using Windows.Media.SpeechSynthesis;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -175,9 +179,36 @@ namespace DictionaryApp.Views
             this.InitializeComponent();
         }
 
-        private void btnSpeech_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void btnSpeech_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            
+            int rate = Convert.ToInt32(Database.getUserData(Common.SpeakRateColumn));
+            int range = Convert.ToInt32(Database.getUserData(Common.SpeakRangeColumn));
+            int pitch = Convert.ToInt32(Database.getUserData(Common.SpeakPitchColumn));
+            int volume = Convert.ToInt32(Database.getUserData(Common.SpeakVolumeColumn));
+            int gender = Convert.ToInt32(Database.getUserData(Common.SpeakVoiceGender));
+
+            MediaElement mediaPlayer = new MediaElement();
+            using (var speech = new SpeechSynthesizer())
+            {
+                //We will use Ssml for format voice
+                //You can google Ssml Document from Microsoft
+                var Ssml = String.Format("<speak version='1.0' " +
+                    "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>" +
+                    "<prosody rate='{0}' volume='{1}' pitch='{2}' range='{3}'>'{4}'</prosody>"
+                    +
+                    "</speak>", convertIntToValue("rate", rate), convertIntToValue("volume", volume), convertIntToValue("pitch", pitch), convertIntToValue("range", range), txtWord.Text);
+                Debug.WriteLine(Ssml);
+                if (gender == 1)
+                    speech.Voice = SpeechSynthesizer.AllVoices.First(x => x.Gender == VoiceGender.Male);
+                else
+                    speech.Voice = SpeechSynthesizer.AllVoices.First(x => x.Gender == VoiceGender.Female);
+
+                SpeechSynthesisStream stream = await speech.SynthesizeSsmlToStreamAsync(Ssml);
+                mediaPlayer.SetSource(stream, stream.ContentType);
+                mediaPlayer.Play();
+
+
+            }
         }
 
         private void btnFavourites_Click(object sender, RoutedEventArgs e)
@@ -195,12 +226,6 @@ namespace DictionaryApp.Views
                 btnFavourites.Label = "Favourites";
             }
         }
-
-        /*
-        private void btnTranslate_Click(object sender, RoutedEventArgs e)
-        {
-
-        }*/
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
