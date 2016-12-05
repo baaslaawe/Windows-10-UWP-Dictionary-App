@@ -8,20 +8,23 @@ using System.Threading.Tasks;
 
 namespace DictionaryApp.Helper
 {
+    //Handles all the queries to the database
     public class Database
     {
         public static List<Words> getAllWords(string tableName)
         {
+            //adds all the words in the database to the list result
             List<Words> result = new List<Words>();
             try
             {
                 using (var connection = new SQLiteConnection(Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\" + Common.DB_NAME))
-                {
+                {                
                     var statement = connection.Prepare("SELECT * FROM " + tableName);
                     while (!(SQLiteResult.DONE == statement.Step()))
-                    {
+                    {                  
                         if (statement[0] != null)
                         {
+                            //create a word object, add the words values(id,word,type,description) and add it to the list
                             Words word = new Words();
                             word.Id = Convert.ToInt32(statement["Id"]);
                             word.Word = statement["Word"].ToString();
@@ -41,6 +44,8 @@ namespace DictionaryApp.Helper
 
         public static List<string> getGroupChar(string tableName)
         {
+            //gets all the characters in the database and adds them to the list result
+            //e.g: A,B,C,...
             List<string> result = new List<string>();
             try
             {
@@ -83,15 +88,9 @@ namespace DictionaryApp.Helper
             }
         }
 
-        /// <summary>
-        /// Because we have Words,Favourites,Recents have same struct
-        /// So we just need write one function
-        /// </summary>
-        /// <param name="tableName">name of Table</param>
-        /// <param name="word">value</param>
-        /// <returns></returns>
         public static int insertIntoTable(string tableName, Words word)
         {
+            //insert words into the recents and favourites table in the database
             try
             {
                 using (var connection = new SQLiteConnection(Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\" + Common.DB_NAME))
@@ -108,7 +107,7 @@ namespace DictionaryApp.Helper
                 return -1;
             }
         }
-
+        
         public static int searchFavourites(Words word)
         {
             try
@@ -132,6 +131,8 @@ namespace DictionaryApp.Helper
 
         public static List<Words> searchWord(string character)
         {
+            //searches for words in the database
+            //creates and adds them to the list lstWords
             List<Words> lstWords = new List<Words>();
             try
             {
@@ -161,6 +162,7 @@ namespace DictionaryApp.Helper
 
         public static object getUserData(string column)
         {
+            //retrieves the users favourites and recents
             object result = null;
             try
             {
@@ -186,6 +188,7 @@ namespace DictionaryApp.Helper
 
         public static void setUserData(string column, object value)
         {
+            //Updates users favourites and recents
             try
             {
                 using (var connection = new SQLiteConnection(Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\" + Common.DB_NAME))
@@ -203,6 +206,7 @@ namespace DictionaryApp.Helper
 
         public static List<Words> getAllWordsByChar(string groupChar)
         {
+            //gets all the words for a certain character and adds them to the list result
             List<Words> result = new List<Words>();
             try
             {

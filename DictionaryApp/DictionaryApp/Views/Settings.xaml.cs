@@ -19,11 +19,12 @@ namespace DictionaryApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().BackRequested += Settings_BackRequested;
-            loadSettingsData();
+            loadSettingsData();//loads the settings from the database
         }
 
         private void loadSettingsData()
         {
+            //loads the last saved state of the settings from UserData
             int pitch = Convert.ToInt32(Database.getUserData(Common.SpeakPitchColumn));
             int range = Convert.ToInt32(Database.getUserData(Common.SpeakRangeColumn));
             int rate = Convert.ToInt32(Database.getUserData(Common.SpeakRateColumn)); 
@@ -58,6 +59,7 @@ namespace DictionaryApp.Views
 
         private async void Settings_BackRequested(object sender, BackRequestedEventArgs e)
         {
+            //when back button is clicked a message dialog pops up
             e.Handled = true;
             var msg = new MessageDialog("Do you want to save these changes?");
             var okBtn = new UICommand("Accept");
@@ -67,6 +69,7 @@ namespace DictionaryApp.Views
             IUICommand result = await msg.ShowAsync();
             if (result != null && result.Label == "Accept")
             {
+                //Saves the changed settings to UserData
                 Database.setUserData(Common.SpeakPitchColumn,Convert.ToInt32(pitchSlider.Value));
                 Database.setUserData(Common.SpeakRangeColumn, Convert.ToInt32(rangeSlider.Value));
                 Database.setUserData(Common.SpeakRateColumn, Convert.ToInt32(rateSlider.Value));
@@ -88,26 +91,31 @@ namespace DictionaryApp.Views
 
         private void wordSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
+            //sets the size of the Words text to the value of the corresponding slider
             txtWord.FontSize = (double)(wordSlider.Value);
         }
 
         private void typeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
+            //sets the size of the Type text to the value of the corresponding slider
             txtType.FontSize = (double)(typeSlider.Value);
         }
 
         private void descriptionSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
+            //sets the size of the Description text to the value of the corresponding slider
             txtDescription.FontSize = (double)(descriptionSlider.Value);
         }
 
         private void Male_Checked(object sender, RoutedEventArgs e)
         {
+            //Updates UserDate if the male voice is selected
             Database.setUserData(Common.SpeakVoiceGender, 1);
         }
 
         private void Female_Checked(object sender, RoutedEventArgs e)
         {
+            //Updates UserDate if the female voice is selected
             Database.setUserData(Common.SpeakVoiceGender, 0);
         }
     }

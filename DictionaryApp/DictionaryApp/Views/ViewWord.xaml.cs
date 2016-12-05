@@ -23,6 +23,7 @@ namespace DictionaryApp.Views
 
         private void loadWordsDetails(Words word)
         {
+            //load all the values for the word selected
             txtWord.Text = word.Word;
             txtType.Text = word.Type;
             txtDescription.Text = word.Description;
@@ -167,6 +168,7 @@ namespace DictionaryApp.Views
 
         private void ViewWord_BackRequested(object sender, BackRequestedEventArgs e)
         {
+
             e.Handled = true;
             if (Frame.CanGoBack)
             {
@@ -190,7 +192,7 @@ namespace DictionaryApp.Views
             MediaElement mediaPlayer = new MediaElement();
             using (var speech = new SpeechSynthesizer())
             {
-                //We will use Ssml for format voice
+                //We will use Ssml for the voice format
                 //You can google Ssml Document from Microsoft
                 var Ssml = String.Format("<speak version='1.0' " +
                     "xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>" +
@@ -213,14 +215,17 @@ namespace DictionaryApp.Views
 
         private void btnFavourites_Click(object sender, RoutedEventArgs e)
         {
+            //if favourites button is clicked for a word, change the button icon to unfavourites button. 
             if(isFavourite == 0)
             {
                 Database.insertIntoTable("Favourites", word);
                 btnFavourites.Icon = new SymbolIcon(Symbol.UnFavorite);
                 btnFavourites.Label = "UnFavourites";
             }
+            //if the favourited word is deleted from the database, change the button icon to favourites
             else
             {
+
                 Database.deleteFromTable("Favourites", word);
                 btnFavourites.Icon = new SymbolIcon(Symbol.Favorite);
                 btnFavourites.Label = "Favourites";
@@ -229,6 +234,7 @@ namespace DictionaryApp.Views
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
+            //if the settings button is clicked, navigate to the settings page
             Frame.Navigate(typeof(Settings));
         }
 

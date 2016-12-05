@@ -36,6 +36,7 @@ namespace DictionaryApp
         }
         private void loadDictionary()
         {
+            //loads all the characters (A,B,C,...) from the database
             List<string> groupSource = Database.getGroupChar("Words");
             groupSource.Sort();
             lstGroup.ItemsSource = groupSource;
@@ -47,24 +48,14 @@ namespace DictionaryApp
             var currentView = SystemNavigationManager.GetForCurrentView();
 
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-
-
-            //Handle Hardware Back Button
-            /*
-            SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
-            SetFullScreen();
-            loadDictionary();
-            MainPivot.SelectedIndex = Common.MainPivotSaveIndex;*/
         }
 
         private void backButton_Tapped(object sender, BackRequestedEventArgs e)
-
         {
-
-            // insert anything you need to do before navigating
-
-            if (Frame.CanGoBack) Frame.GoBack();
-
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -74,30 +65,8 @@ namespace DictionaryApp
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
             currentView.BackRequested -= backButton_Tapped;
-            // SystemNavigationManager.GetForCurrentView().BackRequested -= MainPage_BackRequested;
         }
-        /*
-        private async void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            e.Handled = true;
-            if(lstAlphaBetic.Visibility == Visibility.Visible)
-            {
-                lstAlphaBetic.Visibility = Visibility.Collapsed;
-                lstGroup.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                var msg = new MessageDialog("Do you want to close this app?");
-                var okBtn = new UICommand("Accept");
-                var cancelBtn = new UICommand("Decline");
-                msg.Commands.Add(okBtn);
-                msg.Commands.Add(cancelBtn);
-                IUICommand result = await msg.ShowAsync();
-                if (result != null && result.Label == "Accept")
-                    Application.Current.Exit();
-            }
-        }*/
-
+        
         public MainPage()
         {
             this.InitializeComponent();
@@ -106,7 +75,7 @@ namespace DictionaryApp
 
         private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Lacking code
+            //handles which appbarbuttons are visible for each pivot item page
             if (MainPivot.SelectedIndex == Common.HomeIndex)
             {
                 btnMulti.Visibility = Visibility.Collapsed;
@@ -119,19 +88,25 @@ namespace DictionaryApp
             }
             else if (MainPivot.SelectedIndex == Common.FavouritesIndex)
             {
+                //loads all the favourited word for the Favourites page
                 List<Words> lstsource = Database.getAllWords("Favourites");
                 lstFavourites.ItemsSource = lstsource;
                 if (lstFavourites.Items.Count > 0)
+                {
                     btnMulti.Visibility = Visibility.Visible;
+                }  
                 btnRemind.Visibility = Visibility.Visible;
 
             }
             else if (MainPivot.SelectedIndex == Common.RecentsIndex)
             {
+                //loads all the recently viewed words for the Recents page
                 List<Words> lstsource = Database.getAllWords("Recents");
                 lstRecents.ItemsSource = lstsource;
                 if (lstRecents.Items.Count > 0)
+                {
                     btnMulti.Visibility = Visibility.Visible;
+                }      
                 btnRemind.Visibility = Visibility.Visible;
             }
             else { return; }
@@ -139,6 +114,9 @@ namespace DictionaryApp
 
         private void lstGroup_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //if a character(A,B,C,...) is selected on the mainpage
+            //get all the words from the database that correspond with
+            //the selected character
             lstAlphabetic.Visibility = Visibility.Visible;
             lstGroup.Visibility = Visibility.Collapsed;
             string groupChar = e.ClickedItem as string;
@@ -147,6 +125,9 @@ namespace DictionaryApp
 
         private void lstAlphaBetic_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //if you select a word in the list of words it navigates you to the 
+            //ViewWord page where the word is displayed
+            //The word is then added to the recents table in the database
             Words word = e.ClickedItem as Words;
             Frame.Navigate(typeof(ViewWord), word);
             Database.insertIntoTable("Recents", word);
@@ -160,9 +141,12 @@ namespace DictionaryApp
 
         private async void btnSpeechRecognition_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            // Create an instance of SpeechRecognizer.
             var speechRecognizer = new SpeechRecognizer();
+            // Compile the constraint.
             await speechRecognizer.CompileConstraintsAsync();
             SpeechRecognitionResult speechRecognitionResult = await speechRecognizer.RecognizeWithUIAsync();
+            //display the recognition result
             txtSearch.Text = speechRecognitionResult.Text;
 
         }
@@ -199,6 +183,7 @@ namespace DictionaryApp
 
         private void lstSearch_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //if you select a word in the search list, navigate to ViewWord to display the word
             Words word = e.ClickedItem as Words;
             Frame.Navigate(typeof(ViewWord), word);
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
@@ -207,6 +192,7 @@ namespace DictionaryApp
 
         private void lstFavorites_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //if you select a word in the favourites list, navigate to ViewWord to display the word
             Words word = e.ClickedItem as Words;
             Frame.Navigate(typeof(ViewWord), word);
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
@@ -215,10 +201,15 @@ namespace DictionaryApp
 
         private void lstFavorites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //if the items selected is greater than 0
             if (lstFavourites.SelectedItems.Count > 0)
-                btnDelete.IsEnabled = true;
+            {
+                btnDelete.IsEnabled = true;//enable delete button
+            }
             else
+            {
                 btnDelete.IsEnabled = false;
+            }
         }
 
         private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
@@ -233,13 +224,14 @@ namespace DictionaryApp
             Words word = (e.OriginalSource as FrameworkElement).DataContext as Words;
             if (word != null)
             {
-                Database.deleteFromTable("Favourites", word);
-                lstFavourites.ItemsSource = Database.getAllWords("Favourites");
+                Database.deleteFromTable("Favourites", word);//deletes the selected word from favourites
+                lstFavourites.ItemsSource = Database.getAllWords("Favourites");//get all the words from favourites
             }
         }
 
         private void lstRecents_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //if you select a word in the recents list, navigate to ViewWord to display the word
             Words word = e.ClickedItem as Words;
             Frame.Navigate(typeof(ViewWord), word);
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
@@ -247,10 +239,15 @@ namespace DictionaryApp
 
         private void lstRecents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //if the selected items in the recents list is greater than 0
             if (lstRecents.SelectedItems.Count > 0)
-                btnDelete.IsEnabled = true;
+            {
+                btnDelete.IsEnabled = true;//enable delete button
+            }
             else
+            {
                 btnDelete.IsEnabled = false;
+            }     
         }
 
         private void RecentsFlyoutDelete_Click(object sender, RoutedEventArgs e)
@@ -258,8 +255,8 @@ namespace DictionaryApp
             Words word = (e.OriginalSource as FrameworkElement).DataContext as Words;
             if (word != null)
             {
-                Database.deleteFromTable("Recents", word);
-                lstRecents.ItemsSource = Database.getAllWords("Recents");
+                Database.deleteFromTable("Recents", word);//deleted from Recents
+                lstRecents.ItemsSource = Database.getAllWords("Recents");//get all the words from recents
             }
         }
 
@@ -282,7 +279,9 @@ namespace DictionaryApp
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
                 if (task.Value.Name == taskName)
+                {
                     task.Value.Unregister(true); // Unregister task
+                }    
             }
 
             if (taskRegisted == false)
@@ -307,10 +306,12 @@ namespace DictionaryApp
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
             int index = MainPivot.SelectedIndex;
+            //if you're on the Favourites pivot item page
             if (index == Common.FavouritesIndex)
             {
                 if (lstFavourites.SelectionMode != ListViewSelectionMode.Multiple)
                 {
+                    //enables select all 
                     lstFavourites.SelectionMode = ListViewSelectionMode.Multiple;
                     lstFavourites.IsItemClickEnabled = false;
                     EnableMultiSelectMode();
@@ -322,6 +323,7 @@ namespace DictionaryApp
                     DisableMultiSelectMode();
                 }
             }
+            //if you're on the Recents pivot item page
             else if (index == Common.RecentsIndex)
             {
                 if (lstRecents.SelectionMode != ListViewSelectionMode.Multiple)
@@ -358,27 +360,35 @@ namespace DictionaryApp
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            //if you're on the Favourites pivot item page
             if (MainPivot.SelectedIndex == Common.FavouritesIndex)
             {
+                //if the selected items in the list of favourites is greater than 0
                 if (lstFavourites.SelectedItems.Count > 0)
                 {
                     foreach (Words item in lstFavourites.SelectedItems)
                     {
+                        //delete all the selected items from recents
                         Database.deleteFromTable("Favourites", item);
                     }
-                    lstFavourites.ItemsSource = Database.getAllWords("Favourites");
+                    lstFavourites.ItemsSource = Database.getAllWords("Favourites");//then get all the words in favourites table
                 }
                 else
                 {
                     Common.showMessage("Please select item to delete...");
                 }
             }
+            //if you're on the Recents pivot item page
             else if (MainPivot.SelectedIndex == Common.RecentsIndex)
             {
+                //if the selected items in the list of recents is greater than 0
                 if (lstRecents.SelectedItems.Count > 0)
                 {
                     foreach (Words item in lstRecents.SelectedItems)
+                    {
+                        //delete all the selected items from recents
                         Database.deleteFromTable("Recents", item);
+                    }       
                     lstRecents.ItemsSource = Database.getAllWords("Recents");
                 }
                 else
@@ -390,6 +400,7 @@ namespace DictionaryApp
 
         private void btnSetting_Click(object sender, RoutedEventArgs e)
         {
+            //navigate to the settings pivot item page
             Frame.Navigate(typeof(Settings));
             Common.MainPivotSaveIndex = MainPivot.SelectedIndex;
         }
@@ -398,17 +409,29 @@ namespace DictionaryApp
         {
             DisableMultiSelectMode();
             if (MainPivot.SelectedIndex == Common.FavouritesIndex)
+            {
+                //changes the selection mode to single so you have to select each item individually
                 lstFavourites.SelectionMode = ListViewSelectionMode.Single;
+            }
             else if (MainPivot.SelectedIndex == Common.RecentsIndex)
+            {
+                //changes the selection mode to single so you have to select each item individually
                 lstRecents.SelectionMode = ListViewSelectionMode.Single;
+            }
         }
 
         private void btnSelectAll_Click(object sender, RoutedEventArgs e)
         {
+            //select all if you're in Favourites 
             if (MainPivot.SelectedIndex == Common.FavouritesIndex)
+            {
                 lstFavourites.SelectAll();
+            }
+            //select all if you're in Recents  
             else if (MainPivot.SelectedIndex == Common.RecentsIndex)
+            {
                 lstRecents.SelectAll();
+            }
         }
 
         private void lstAlphabetic_ItemClick_1(object sender, ItemClickEventArgs e)

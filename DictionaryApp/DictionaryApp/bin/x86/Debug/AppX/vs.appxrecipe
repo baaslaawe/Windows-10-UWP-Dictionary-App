@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-12-04T17:58:48.990</Modified>
+      <Modified>2016-12-05T23:32:49.414</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\DictionaryApp.exe">
       <PackagePath>entrypoint\DictionaryApp.exe</PackagePath>
-      <Modified>2016-12-04T17:58:46.562</Modified>
+      <Modified>2016-12-05T23:32:41.930</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lynsk\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\uap10.0\Microsoft.ApplicationInsights.dll">
       <PackagePath>Microsoft.ApplicationInsights.dll</PackagePath>
@@ -581,11 +581,11 @@
     <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-12-04T17:58:48.469</Modified>
+      <Modified>2016-12-05T23:24:16.128</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lynsk\Documents\Visual Studio 2015\Projects\DictionaryApp\DictionaryApp\bin\x86\Debug\Core\DictionaryApp.exe">
       <PackagePath>DictionaryApp.exe</PackagePath>
-      <Modified>2016-12-04T17:58:48.977</Modified>
+      <Modified>2016-12-05T23:32:49.403</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@ namespace DictionaryApp.Helper
     {
         //Db name
         public static string DB_NAME = "Database.db";
+
         //Column names
         public static string SpeakRateColumn = "SpeakRate";
         public static string SpeakPitchColumn = "SpeakPitch";
