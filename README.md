@@ -38,6 +38,9 @@ App.xaml.cs | This class comes with all visual studio projects. The App.xaml.cs 
 MainPage.xaml.cs | This class contains the main functionality of the MainPage.xaml page. This page controls the navigation to and from pages, what functions are called when certain buttons or pages are clicked, which parts of the application are visable and when to query the database.
 Settings.xaml.cs | This class controls the functionality of the Settings.xaml page. It contains all the logic behind the settings options, error handling and page navigation.
 ViewWord.xaml.cs | This class controls the functionality of the ViewWord.xaml page. This page contains the logic behind the buttons clicked (example: favourites, speech, delete), loads the full details of the word and page navigation.
+Words.cs | Getters and Setters for the Words table in the database.
+Common.cs | This class contains variables for the database, columns and pivot item pages.
+Database.cs | This class controls all the SELECT, INSERT, DELETE and UPDATE queries to the database.
 
 ### **SQLite**
 The SQLite database has all the words for the dictionary stored on a local database. This database also stores the users data such as what words were recently viewed and which words were favourited.
@@ -48,9 +51,49 @@ Table Name | Description
 Words | Stores all the words in the dictionary. It has four columns, Id, Word, Type and Description.
 Favourites | Stores all the words that were favourited by the user.
 Recents | Stores all the words recently viewed by the user. 
-UserData | Stores all the settings changes made by the user.
+UserData | Stores all the settings changes made by the user
 
+## **_Project User Guide_**
+- Download the zip file provided on the github repository.
+- Open the project .sln file using Visual Studio 2015.
+- You may need to follow the SQLite User guide described below in order to get the project to run. I downloaded the project on other computers and had to do so.
+- Run the project.
 
+## **_SQLite User Guide_**
+Installation guide on SQLite for the project on Visual Studio 2015:
+- First you need to go to the SQLite download site at [https://www.sqlite.org/download.html](https://www.sqlite.org/download.html)
+- Download SQLite for **Universal Windows Platform**
+- Open up Visual Studio 2015
+- The first thing you must do is add a reference to SQLite in your project
+- Right click on the **References** tab in your project in **Solution Explorer** and then click **Add Reference**
+- On the pop up window, navigate to the **Universal Windows section** on the left and click **Extensions** 
+- Tick the **SQLite for Universal App platform** box, and also the **C++ Runtime 2015** then click **OK**
+- In your project in solution explorer once again right click on the **References** folder and select **Manage Nuget Packages**
+- Select **Browse** and then type the following into the search area: **SQLite.Net-PCL**
+- You should see the package, then click **install**
+- Thats it, SQLite is now installed into the project
+
+## **_References_**
+1.[https://docs.microsoft.com/en-us/ef/core/get-started/uwp/getting-started](https://docs.microsoft.com/en-us/ef/core/get-started/uwp/getting-started)
+2.[http://stackoverflow.com/questions/34850610/query-multiple-tables-sqlite-windows-10-uwp](http://stackoverflow.com/questions/34850610/query-multiple-tables-sqlite-windows-10-uwp)
+3.[https://code.msdn.microsoft.com/windowsapps/Implement-SQLite-Local-8b13a307](https://code.msdn.microsoft.com/windowsapps/Implement-SQLite-Local-8b13a307)
+4.[https://code.msdn.microsoft.com/windowsapps/Local-Data-Base-SQLite-for-5e6146aa](https://code.msdn.microsoft.com/windowsapps/Local-Data-Base-SQLite-for-5e6146aa)
+5.[http://grogansoft.com/blog/?p=1116](http://grogansoft.com/blog/?p=1116)
+6.[http://stackoverflow.com/questions/15292880/create-sqlite-database-and-table](http://stackoverflow.com/questions/15292880/create-sqlite-database-and-table)
+7.[http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/](http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/)
+8.[http://stackoverflow.com/questions/2660723/remove-characters-after-specific-character-in-string-then-remove-substring](http://stackoverflow.com/questions/2660723/remove-characters-after-specific-character-in-string-then-remove-substring)
+9.[https://msdn.microsoft.com/en-us/windows/uwp/input-and-devices/speech-recognition](https://msdn.microsoft.com/en-us/windows/uwp/input-and-devices/speech-recognition)
+10.[https://msdn.microsoft.com/en-us/library/jj127898.aspx](https://msdn.microsoft.com/en-us/library/jj127898.aspx)
+11.[https://blogs.windows.com/buildingapps/2016/05/23/using-speech-in-your-uwp-apps-from-talking-to-conversing/#cwlJ46sIxxmpKfxm.97](https://blogs.windows.com/buildingapps/2016/05/23/using-speech-in-your-uwp-apps-from-talking-to-conversing/#cwlJ46sIxxmpKfxm.97)
+12.[https://msdn.microsoft.com/en-us/library/windows.media.speechsynthesis.speechsynthesizer.synthesizessmltostreamasync.aspx](https://msdn.microsoft.com/en-us/library/windows.media.speechsynthesis.speechsynthesizer.synthesizessmltostreamasync.aspx)
+13.[https://www.w3.org/TR/speech-synthesis/](https://www.w3.org/TR/speech-synthesis/)
+14.[http://www.c-sharpcorner.com/uploadfile/2b876a/local-data-base-sqlite-for-windows-10/](http://www.c-sharpcorner.com/uploadfile/2b876a/local-data-base-sqlite-for-windows-10/)
+15.[http://stackoverflow.com/questions/35463566/uwp-text-to-speech-from-listbox-c](http://stackoverflow.com/questions/35463566/uwp-text-to-speech-from-listbox-c)
+16.[http://devcenter.wintellect.com/jprosise/handling-the-back-button-in-windows-10-uwp-apps](http://devcenter.wintellect.com/jprosise/handling-the-back-button-in-windows-10-uwp-apps)
+17.
+18.
+19.
+20.
 
 
 
