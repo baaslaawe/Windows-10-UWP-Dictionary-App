@@ -189,6 +189,7 @@ namespace DictionaryApp.Views
             int volume = Convert.ToInt32(Database.getUserData(Common.SpeakVolumeColumn));
             int gender = Convert.ToInt32(Database.getUserData(Common.SpeakVoiceGender));
 
+            // The media object for controlling and playing audio.
             MediaElement mediaPlayer = new MediaElement();
             using (var speech = new SpeechSynthesizer())
             {
@@ -205,7 +206,9 @@ namespace DictionaryApp.Views
                 else
                     speech.Voice = SpeechSynthesizer.AllVoices.First(x => x.Gender == VoiceGender.Female);
 
+                // Generate the audio stream from plain text.
                 SpeechSynthesisStream stream = await speech.SynthesizeSsmlToStreamAsync(Ssml);
+                // Send the stream to the media object.
                 mediaPlayer.SetSource(stream, stream.ContentType);
                 mediaPlayer.Play();
 
