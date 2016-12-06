@@ -74,25 +74,25 @@ Installation guide on SQLite for the project on Visual Studio 2015:
 - Thats it, SQLite is now installed into the project
 
 ## **_References_**
-1.[https://docs.microsoft.com/en-us/ef/core/get-started/uwp/getting-started](https://docs.microsoft.com/en-us/ef/core/get-started/uwp/getting-started)
-2.[http://stackoverflow.com/questions/34850610/query-multiple-tables-sqlite-windows-10-uwp](http://stackoverflow.com/questions/34850610/query-multiple-tables-sqlite-windows-10-uwp)
-3.[https://code.msdn.microsoft.com/windowsapps/Implement-SQLite-Local-8b13a307](https://code.msdn.microsoft.com/windowsapps/Implement-SQLite-Local-8b13a307)
-4.[https://code.msdn.microsoft.com/windowsapps/Local-Data-Base-SQLite-for-5e6146aa](https://code.msdn.microsoft.com/windowsapps/Local-Data-Base-SQLite-for-5e6146aa)
-5.[http://grogansoft.com/blog/?p=1116](http://grogansoft.com/blog/?p=1116)
-6.[http://stackoverflow.com/questions/15292880/create-sqlite-database-and-table](http://stackoverflow.com/questions/15292880/create-sqlite-database-and-table)
-7.[http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/](http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/)
-8.[http://stackoverflow.com/questions/2660723/remove-characters-after-specific-character-in-string-then-remove-substring](http://stackoverflow.com/questions/2660723/remove-characters-after-specific-character-in-string-then-remove-substring)
-9.[https://msdn.microsoft.com/en-us/windows/uwp/input-and-devices/speech-recognition](https://msdn.microsoft.com/en-us/windows/uwp/input-and-devices/speech-recognition)
-10.[https://msdn.microsoft.com/en-us/library/jj127898.aspx](https://msdn.microsoft.com/en-us/library/jj127898.aspx)
-11.[https://blogs.windows.com/buildingapps/2016/05/23/using-speech-in-your-uwp-apps-from-talking-to-conversing/#cwlJ46sIxxmpKfxm.97](https://blogs.windows.com/buildingapps/2016/05/23/using-speech-in-your-uwp-apps-from-talking-to-conversing/#cwlJ46sIxxmpKfxm.97)
-12.[https://msdn.microsoft.com/en-us/library/windows.media.speechsynthesis.speechsynthesizer.synthesizessmltostreamasync.aspx](https://msdn.microsoft.com/en-us/library/windows.media.speechsynthesis.speechsynthesizer.synthesizessmltostreamasync.aspx)
-13.[https://www.w3.org/TR/speech-synthesis/](https://www.w3.org/TR/speech-synthesis/)
-14.[http://www.c-sharpcorner.com/uploadfile/2b876a/local-data-base-sqlite-for-windows-10/](http://www.c-sharpcorner.com/uploadfile/2b876a/local-data-base-sqlite-for-windows-10/)
-15.[http://stackoverflow.com/questions/35463566/uwp-text-to-speech-from-listbox-c](http://stackoverflow.com/questions/35463566/uwp-text-to-speech-from-listbox-c)
-16.[http://devcenter.wintellect.com/jprosise/handling-the-back-button-in-windows-10-uwp-apps](http://devcenter.wintellect.com/jprosise/handling-the-back-button-in-windows-10-uwp-apps)
+1.[https://docs.microsoft.com/en-us/ef/core/get-started/uwp/getting-started](https://docs.microsoft.com/en-us/ef/core/get-started/uwp/getting-started) </br>
+2.[http://stackoverflow.com/questions/34850610/query-multiple-tables-sqlite-windows-10-uwp](http://stackoverflow.com/questions/34850610/query-multiple-tables-sqlite-windows-10-uwp) </br>
+3.[https://code.msdn.microsoft.com/windowsapps/Implement-SQLite-Local-8b13a307](https://code.msdn.microsoft.com/windowsapps/Implement-SQLite-Local-8b13a307) </br>
+4.[https://code.msdn.microsoft.com/windowsapps/Local-Data-Base-SQLite-for-5e6146aa](https://code.msdn.microsoft.com/windowsapps/Local-Data-Base-SQLite-for-5e6146aa) </br>
+5.[http://grogansoft.com/blog/?p=1116](http://grogansoft.com/blog/?p=1116) </br>
+6.[http://stackoverflow.com/questions/15292880/create-sqlite-database-and-table](http://stackoverflow.com/questions/15292880/create-sqlite-database-and-table) </br>
+7.[http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/](http://blog.tigrangasparian.com/2012/02/09/getting-started-with-sqlite-in-c-part-one/) </br>
+8.[http://stackoverflow.com/questions/2660723/remove-characters-after-specific-character-in-string-then-remove-substring](http://stackoverflow.com/questions/2660723/remove-characters-after-specific-character-in-string-then-remove-substring) </br>
+9.[https://msdn.microsoft.com/en-us/windows/uwp/input-and-devices/speech-recognition](https://msdn.microsoft.com/en-us/windows/uwp/input-and-devices/speech-recognition) </br>
+10.[https://msdn.microsoft.com/en-us/library/jj127898.aspx](https://msdn.microsoft.com/en-us/library/jj127898.aspx) </br>
+11.[https://blogs.windows.com/buildingapps/2016/05/23/using-speech-in-your-uwp-apps-from-talking-to-conversing/#cwlJ46sIxxmpKfxm.97](https://blogs.windows.com/buildingapps/2016/05/23/using-speech-in-your-uwp-apps-from-talking-to-conversing/#cwlJ46sIxxmpKfxm.97) </br>
+12.[https://msdn.microsoft.com/en-us/library/windows.media.speechsynthesis.speechsynthesizer.synthesizessmltostreamasync.aspx](https://msdn.microsoft.com/en-us/library/windows.media.speechsynthesis.speechsynthesizer.synthesizessmltostreamasync.aspx) </br>
+13.[https://www.w3.org/TR/speech-synthesis/](https://www.w3.org/TR/speech-synthesis/) </br>
+14.[http://www.c-sharpcorner.com/uploadfile/2b876a/local-data-base-sqlite-for-windows-10/](http://www.c-sharpcorner.com/uploadfile/2b876a/local-data-base-sqlite-for-windows-10/) </br>
+15.[http://stackoverflow.com/questions/35463566/uwp-text-to-speech-from-listbox-c](http://stackoverflow.com/questions/35463566/uwp-text-to-speech-from-listbox-c) </br>
+16.[http://devcenter.wintellect.com/jprosise/handling-the-back-button-in-windows-10-uwp-apps](http://devcenter.wintellect.com/jprosise/handling-the-back-button-in-windows-10-uwp-apps) </br>
 17.[http://www.mso.anu.edu.au/~ralph/OPTED/](http://www.mso.anu.edu.au/~ralph/OPTED/) This is where I got all the words for the dictionary. This website has changed since I first started the project and now the words are unavailable. </br>
-18.[https://www.w3.org/Voice/2007/speech-synthesis11/WD-speech-synthesis11-20070611diff.html](https://www.w3.org/Voice/2007/speech-synthesis11/WD-speech-synthesis11-20070611diff.html)
-19.[https://msdn.microsoft.com/en-us/library/b0zbh7b6(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/b0zbh7b6(v=vs.110).aspx)
+18.[https://www.w3.org/Voice/2007/speech-synthesis11/WD-speech-synthesis11-20070611diff.html](https://www.w3.org/Voice/2007/speech-synthesis11/WD-speech-synthesis11-20070611diff.html) </br>
+19.[https://msdn.microsoft.com/en-us/library/b0zbh7b6(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/b0zbh7b6(v=vs.110).aspx) </br>
 
 
 
