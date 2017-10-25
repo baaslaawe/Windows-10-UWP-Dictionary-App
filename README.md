@@ -1,4 +1,4 @@
-# Windows-10-Pocket-Dictionary-App
+# Windows-10-Dictionary-App
 
 **Student Name:** Gareth Lynskey </br>
 **Student ID:** G00312651 </br>
